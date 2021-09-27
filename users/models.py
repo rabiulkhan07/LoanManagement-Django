@@ -18,3 +18,15 @@ class Users(models.Model) :
     tenure = models.FloatField()
     opening_date = models.DateField()
     photoFileName = models.CharField(max_length=100)
+
+
+class Loan(models.Model) :
+    id = models.AutoField(primary_key=True)
+    user_id = models.CharField(max_length=100)
+    full_name = models.CharField(max_length=100)
+    phone_no = models.CharField(max_length=100)
+    total_balance = models.FloatField()
+    is_loan = models.BooleanField()
+    loan_amount = models.FloatField()
+    tenure = models.FloatField()
+    interest_rate = models.FloatField()

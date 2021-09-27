@@ -10,6 +10,9 @@ urlpatterns = [
     url(r'^user$',views.userApi),
     url(r'^user/([0-9]+)$',views.userApi),
 
-    url(r'^user/savefile$',views.SaveFile)
+    url(r'^user/savefile$',views.SaveFile),
+
+    url(r'^loan$',views.loanApi),
+    url(r'^loan/([0-9]+)$',views.loanApi),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

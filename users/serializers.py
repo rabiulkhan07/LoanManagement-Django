@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from users.models import Users
+from users.models import Users, Loan
 
 class UsersSerializers(serializers.ModelSerializer) :
     class Meta:
@@ -20,4 +20,19 @@ class UsersSerializers(serializers.ModelSerializer) :
             'opening_date',
             'photoFileName'
 
+        )
+
+class LoanSerializers(serializers.ModelSerializer):
+    class Meta :
+        model = Loan
+        fields = (
+            'id',
+            'user_id',
+            'full_name',
+            'phone_no',
+            'total_balance',
+            'is_loan',
+            'loan_amount',
+            'tenure',
+            'interest_rate'
         )
