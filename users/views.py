@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from users.models import Users, Loan
 from users.serializers import UsersSerializers, LoanSerializers
@@ -14,15 +15,17 @@ from django.core.files.storage import default_storage
 @csrf_exempt
 def userApi(request, id = 0):
 
+
     if request.method == 'GET':
         users = Users.objects.all()
         user_serializer = UsersSerializers(users, many=True)
+        permission_classes = (AllowAny,)
         return JsonResponse(user_serializer.data, safe=False)
 
     elif request.method == 'POST':
         user_data = JSONParser().parse(request)
         user_serializer = UsersSerializers(data=user_data)
-
+        permission_classes = (AllowAny,)
         if user_serializer.is_valid():
             user_serializer.save()
             return JsonResponse("Added Successfully", safe=False)
